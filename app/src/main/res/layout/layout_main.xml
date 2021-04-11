@@ -7,21 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".View.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/weatherLocation"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:elevation="2dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBox" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -44,25 +29,14 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:hintAnimationEnabled="true"
-        app:hintEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searchBoxEdit"
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerCities"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Location" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+            android:entries="@array/city_array" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/weatherRecycler"
@@ -75,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBox">
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCities">
 
     </androidx.recyclerview.widget.RecyclerView>
 

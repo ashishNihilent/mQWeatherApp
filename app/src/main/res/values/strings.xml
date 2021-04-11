@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">mWeather</string>
+
+    <string-array name="city_array">
+        <item>Mumbai</item>
+        <item>Delhi</item>
+        <item>Kolkata</item>
+        <item>Benguluru</item>
+        <item>Chennai</item>
+        <item>Chandigarh</item>
+        <item>Nagpur</item>
+        <item>Aurangabad</item>
+        <item>Umarkhed</item>
+    </string-array>
 </resources>

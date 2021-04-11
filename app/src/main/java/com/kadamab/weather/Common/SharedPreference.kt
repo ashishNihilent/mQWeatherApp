@@ -90,13 +90,14 @@ object SharedPreference {
         return prefs.getString(key, default_value)
     }
 
-    fun loadPreference(key: String?, default_value: Int): Int {
+    @JvmName("loadPreference1")
+    fun loadPreference(key: String?, default_value: String): String? {
         if (context == null) {
             Log.d("SharedPreference", "Error: Missing Context")
-            return -1
+            return default_value
         }
         val prefs = context!!.getSharedPreferences(appStorageName,Context.MODE_PRIVATE )
-        return prefs.getInt(key, default_value)
+        return prefs.getString(key, default_value)
     }
 
     fun loadPreference(key: String?, default_value: Float): Float {

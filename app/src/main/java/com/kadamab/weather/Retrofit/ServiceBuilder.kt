@@ -12,7 +12,7 @@ object ServiceBuilder {
     private val client = OkHttpClient.Builder().build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://www.metaweather.com/api/")
+        .baseUrl("http://api.openweathermap.org/data/2.5/weather?")
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()

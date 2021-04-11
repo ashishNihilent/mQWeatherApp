@@ -1,12 +1,10 @@
 package com.kadamab.weather.ViewModel
 
+import WeatherModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.kadamab.weather.Repository.WeatherDataRepository
-import com.kadamab.weather.Repository.WeatherLocationRepository
-import com.kadamab.weather.Serializeable.WeatherLocation
-import com.kadamab.weather.Serializeable.WeatherModel
 
 /**
 
@@ -16,18 +14,13 @@ import com.kadamab.weather.Serializeable.WeatherModel
 class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
     private val weatherDataRepository: WeatherDataRepository = WeatherDataRepository.instance!!
-    private val weatherLocationRepository: WeatherLocationRepository = WeatherLocationRepository.instance!!
 
     /**
      * Requesting Methods
      */
 
-    fun requestWeatherData(woeid: Int) {
+    fun requestWeatherData(woeid: String) {
         weatherDataRepository.requestWeatherData(woeid)
-    }
-
-    fun requestWeatherLocation(text: String) {
-        weatherLocationRepository.requestWeatherLocation(text)
     }
 
     /**
@@ -36,10 +29,6 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
 
     fun observeWeatherData(): MutableLiveData<WeatherModel?> {
         return weatherDataRepository.observeWeatherData()
-    }
-
-    fun observeWeatherLocation(): MutableLiveData<List<WeatherLocation>?> {
-        return weatherLocationRepository.observeWeatherLocation()
     }
 
 }
