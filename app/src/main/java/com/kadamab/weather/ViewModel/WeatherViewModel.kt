@@ -27,7 +27,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
      * Get Observer
      */
 
-    fun observeWeatherData(): MutableLiveData<WeatherModel?> {
+    fun observeWeatherData(): MutableLiveData<WeatherModel> {
         return weatherDataRepository.observeWeatherData()
     }
 

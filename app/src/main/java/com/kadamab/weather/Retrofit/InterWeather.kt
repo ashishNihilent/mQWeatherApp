@@ -12,10 +12,7 @@ Created by KADAMAB on 30 March 2021
 
 */
 interface InterWeather {
-   // @GET("location/{woeid}/")
-    @GET("q={city}&appid=fae7190d7e6433ec3a45285ffcf55c86")
-
-    fun getWeather(@Path("city") woeid: String): Call<WeatherModel>
-
+    @GET("weather")
+    fun getWeather(@Query("q") woeid: String, @Query("appid") key: String): Call<WeatherModel>
 }
 

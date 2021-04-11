@@ -15,6 +15,7 @@ import retrofit2.Response
 */
 class WeatherDataRepository : ViewModel() {
 
+    private val KEY = "fae7190d7e6433ec3a45285ffcf55c86"
     private val weatherModel: MutableLiveData<WeatherModel> = MutableLiveData()
 
     fun observeWeatherData(): MutableLiveData<WeatherModel> {
@@ -23,7 +24,7 @@ class WeatherDataRepository : ViewModel() {
 
     fun requestWeatherData(woeid: String) {
 
-        val weatherDataCall: Call<WeatherModel> = myInterface.getWeather("mumbai")
+        val weatherDataCall: Call<WeatherModel> = myInterface.getWeather(woeid, KEY)
         weatherDataCall.enqueue(object : Callback<WeatherModel?> {
             override fun onResponse(call: Call<WeatherModel?>, response: Response<WeatherModel?>) {
                 weatherModel.setValue(response.body())

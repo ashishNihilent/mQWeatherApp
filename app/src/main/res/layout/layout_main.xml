@@ -38,7 +38,7 @@
             app:layout_constraintTop_toBottomOf="@+id/headerLayout"
             android:entries="@array/city_array" />
 
-    <androidx.recyclerview.widget.RecyclerView
+   <!-- <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/weatherRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -51,6 +51,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCities">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>-->
 
+    <include
+        android:id="@+id/weatherLayout"
+        layout="@layout/item_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCities"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,13 @@
 package com.kadamab.weather.View
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,11 +24,10 @@ import com.kadamab.weather.databinding.ActivityMainBinding
 
 */
 
-class MainActivity : AppCompatActivity(), CellClickListener  {
+class MainActivity : AppCompatActivity(), FavClickListener  {
 
     private var currentWoeid = "mumbai"
     var weatherViewModel: WeatherViewModel? = null
-
     private lateinit var weatherRecycler: RecyclerView
     private lateinit var viewAdapterWeather: RecyclerView.Adapter<*>
     private lateinit var viewManagerWeather: RecyclerView.LayoutManager
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity(), CellClickListener  {
     private lateinit var viewAdapterLocation: RecyclerView.Adapter<*>
     private lateinit var viewManagerLocation: RecyclerView.LayoutManager
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bindings = ActivityMainBinding.inflate(layoutInflater);
@@ -51,8 +53,18 @@ class MainActivity : AppCompatActivity(), CellClickListener  {
 
 
         weatherViewModel!!.observeWeatherData().observe(this, Observer {
-            if(it != null){
-             //to be done
+            if(it != null && it.main != null){
+                val data = it.main
+                bindings.mainContet.weatherLayout.textWeatherState.text = data.feels_like.toString()
+                //holder.binding.textDate.text = data.get(position).applicable_date
+
+                bindings.mainContet.weatherLayout.txtAverageValue.text = data.temp.toString() + "°"
+                bindings.mainContet.weatherLayout.txtMinimumValue.text = data.temp_min.toString() + "°"
+                bindings.mainContet.weatherLayout.txtMaximumValue.text = data.temp_max.toString() + "°"
+
+                bindings.mainContet.weatherLayout.textAirPressureValue.text = data.pressure.toString() + " mbar"
+                bindings.mainContet.weatherLayout.textHumidityValue.text = data.humidity.toString() + "%"
+
             }
         })
 
@@ -65,7 +77,7 @@ class MainActivity : AppCompatActivity(), CellClickListener  {
                 position: Int,
                 id: Long
             ) {
-
+                weatherViewModel!!.requestWeatherData(parent.getItemAtPosition(position).toString())
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -77,7 +89,6 @@ class MainActivity : AppCompatActivity(), CellClickListener  {
     }
 
     override fun locationOnClick(pos: Int, woeid: String) {
-        weatherViewModel!!.requestWeatherData(woeid)
         currentWoeid = woeid
         SharedPreference.savePreference("_woeid", woeid)
         try {
@@ -89,6 +100,6 @@ class MainActivity : AppCompatActivity(), CellClickListener  {
     }
 }
 
-interface CellClickListener {
+interface FavClickListener {
     fun locationOnClick(pos: Int, woeid: String)
 }

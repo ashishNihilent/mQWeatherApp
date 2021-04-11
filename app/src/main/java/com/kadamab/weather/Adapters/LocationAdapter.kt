@@ -3,14 +3,14 @@ package com.kadamab.weather.Adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.kadamab.weather.View.CellClickListener
+import com.kadamab.weather.View.FavClickListener
 import com.kadamab.weather.databinding.ItemLocationBinding
 /**
 
 *Created by KADAMAB on 31 March 2021
 
 */
-class LocationAdapter(private val data: List<String>, private val cellClickListener: CellClickListener) : RecyclerView.Adapter<LocationAdapter.MyViewHolder>()  {
+class LocationAdapter(private val data: List<String>, private val cellClickListener: FavClickListener) : RecyclerView.Adapter<LocationAdapter.MyViewHolder>()  {
 
     class MyViewHolder(val binding: ItemLocationBinding) : RecyclerView.ViewHolder(binding.root)
 
