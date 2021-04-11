@@ -15,9 +15,9 @@ import retrofit2.Response
 */
 class WeatherDataRepository : ViewModel() {
 
-    private val weatherModel: MutableLiveData<WeatherModel?> = MutableLiveData()
+    private val weatherModel: MutableLiveData<WeatherModel> = MutableLiveData()
 
-    fun observeWeatherData(): MutableLiveData<WeatherModel?> {
+    fun observeWeatherData(): MutableLiveData<WeatherModel> {
         return weatherModel
     }
 
