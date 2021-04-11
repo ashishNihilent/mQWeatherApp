@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "mvvm.kotlin.weather.app"
+        applicationId "com.kadamab.weather"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 2
