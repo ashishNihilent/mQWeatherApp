@@ -15,10 +15,6 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
 
     private val weatherDataRepository: WeatherDataRepository = WeatherDataRepository.instance!!
 
-    /**
-     * Requesting Methods
-     */
-
     fun requestWeatherData(woeid: String) {
         weatherDataRepository.requestWeatherData(woeid)
     }

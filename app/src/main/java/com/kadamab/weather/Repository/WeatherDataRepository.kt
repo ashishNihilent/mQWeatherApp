@@ -3,6 +3,7 @@ package com.kadamab.weather.Repository
 import WeatherModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.kadamab.weather.Common.RequestParam
 import com.kadamab.weather.Retrofit.InterWeather
 import com.kadamab.weather.Retrofit.ServiceBuilder
 import retrofit2.Call
@@ -15,7 +16,6 @@ import retrofit2.Response
 */
 class WeatherDataRepository : ViewModel() {
 
-    private val KEY = "fae7190d7e6433ec3a45285ffcf55c86"
     private val weatherModel: MutableLiveData<WeatherModel> = MutableLiveData()
 
     fun observeWeatherData(): MutableLiveData<WeatherModel> {
@@ -24,7 +24,7 @@ class WeatherDataRepository : ViewModel() {
 
     fun requestWeatherData(woeid: String) {
 
-        val weatherDataCall: Call<WeatherModel> = myInterface.getWeather(woeid, KEY)
+        val weatherDataCall: Call<WeatherModel> = myInterface.getWeather(woeid, RequestParam.Default.APIKEY_VALUE)
         weatherDataCall.enqueue(object : Callback<WeatherModel?> {
             override fun onResponse(call: Call<WeatherModel?>, response: Response<WeatherModel?>) {
                 weatherModel.setValue(response.body())

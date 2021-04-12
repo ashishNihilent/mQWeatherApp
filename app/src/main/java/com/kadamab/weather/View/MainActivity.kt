@@ -2,21 +2,18 @@ package com.kadamab.weather.View
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kadamab.weather.Adapters.LocationAdapter
-import com.kadamab.weather.Adapters.WeatherAdapter
+import com.kadamab.weather.Common.RequestParam
 import com.kadamab.weather.Common.SharedPreference
 import com.kadamab.weather.ViewModel.WeatherViewModel
 import com.kadamab.weather.databinding.ActivityMainBinding
+import io.realm.Realm
 
 /**
 
@@ -26,7 +23,9 @@ import com.kadamab.weather.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), FavClickListener  {
 
-    private var currentWoeid = "mumbai"
+    private var currentWoeid = RequestParam.Default.CURRENT_CITY
+    private lateinit var realm: Realm
+
     var weatherViewModel: WeatherViewModel? = null
     private lateinit var weatherRecycler: RecyclerView
     private lateinit var viewAdapterWeather: RecyclerView.Adapter<*>
@@ -41,9 +40,12 @@ class MainActivity : AppCompatActivity(), FavClickListener  {
         super.onCreate(savedInstanceState)
         val bindings = ActivityMainBinding.inflate(layoutInflater);
         setContentView(bindings.root)
-
+        realm = Realm.getDefaultInstance()
         SharedPreference.init(applicationContext)
-        currentWoeid = SharedPreference.loadPreference("_woeid", "mumbai").toString()
+        currentWoeid = SharedPreference.loadPreference(
+            RequestParam.SharedPref.PREF_VAL_KEY,
+            RequestParam.Default.CURRENT_CITY
+        ).toString()
 
         viewManagerWeather = LinearLayoutManager(this)
         viewManagerLocation = LinearLayoutManager(this)
@@ -57,7 +59,6 @@ class MainActivity : AppCompatActivity(), FavClickListener  {
                 val data = it.main
                 bindings.mainContet.weatherLayout.textWeatherState.text = data.feels_like.toString()
                 //holder.binding.textDate.text = data.get(position).applicable_date
-
                 bindings.mainContet.weatherLayout.txtAverageValue.text = data.temp.toString() + "°"
                 bindings.mainContet.weatherLayout.txtMinimumValue.text = data.temp_min.toString() + "°"
                 bindings.mainContet.weatherLayout.txtMaximumValue.text = data.temp_max.toString() + "°"
@@ -80,17 +81,14 @@ class MainActivity : AppCompatActivity(), FavClickListener  {
                 weatherViewModel!!.requestWeatherData(parent.getItemAtPosition(position).toString())
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // another interface callback
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
-
             weatherViewModel!!.requestWeatherData(currentWoeid)
     }
 
     override fun locationOnClick(pos: Int, woeid: String) {
         currentWoeid = woeid
-        SharedPreference.savePreference("_woeid", woeid)
+        SharedPreference.savePreference(RequestParam.SharedPref.PREF_VAL_KEY, woeid)
         try {
             locationRecycler.visibility = View.GONE
             weatherRecycler.visibility = View.VISIBLE
