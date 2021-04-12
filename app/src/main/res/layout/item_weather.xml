@@ -233,6 +233,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="4dp"
                         android:layout_weight="1"
+                        android:textStyle="bold|italic"
                         android:text="Air Pressure:"
                         android:textSize="12sp" />
 

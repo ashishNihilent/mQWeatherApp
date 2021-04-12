@@ -5,12 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kadamab.weather.View.FavClickListener
 import com.kadamab.weather.databinding.ItemLocationBinding
+import com.kadamab.weather.rm.City
+import io.realm.RealmResults
+
 /**
 
 *Created by KADAMAB on 31 March 2021
 
 */
-class LocationAdapter(private val data: List<String>, private val cellClickListener: FavClickListener) : RecyclerView.Adapter<LocationAdapter.MyViewHolder>()  {
+class LocationAdapter(private val data: RealmResults<City>, private val cellClickListener: FavClickListener) : RecyclerView.Adapter<LocationAdapter.MyViewHolder>()  {
 
     class MyViewHolder(val binding: ItemLocationBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,9 +23,9 @@ class LocationAdapter(private val data: List<String>, private val cellClickListe
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.textName.text = data.get(position)
+        holder.binding.textName.text = data.get(position).name
         holder.itemView.setOnClickListener {
-            cellClickListener.locationOnClick(position, data.get(position))
+            cellClickListener.locationOnClick(position, data.get(position).name)
         }
     }
 
