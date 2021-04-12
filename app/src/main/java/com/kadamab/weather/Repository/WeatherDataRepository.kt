@@ -16,7 +16,6 @@ import retrofit2.Response
 */
 class WeatherDataRepository : ViewModel() {
 
-    private val KEY = "fae7190d7e6433ec3a45285ffcf55c86"
     private val weatherModel: MutableLiveData<WeatherModel> = MutableLiveData()
 
     fun observeWeatherData(): MutableLiveData<WeatherModel> {
