@@ -8,9 +8,9 @@ import com.kadamab.weather.Repository.WeatherDataRepository
 
 /**
 
-*Created by KADAMAB on 31 March 2021
+ *Created by KADAMAB on 31 March 2021
 
-*/
+ */
 class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
     private val weatherDataRepository: WeatherDataRepository = WeatherDataRepository.instance!!
@@ -18,10 +18,6 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     fun requestWeatherData(woeid: String) {
         weatherDataRepository.requestWeatherData(woeid)
     }
-
-    /**
-     * Get Observer
-     */
 
     fun observeWeatherData(): MutableLiveData<WeatherModel> {
         return weatherDataRepository.observeWeatherData()

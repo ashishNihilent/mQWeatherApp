@@ -17,5 +17,6 @@
         android:id="@+id/weatherFragment"
         android:name="com.kadamab.weather.View.WeatherFragment"
         android:label="fragment_weather"
+        app:popUpTo="@+id/cityFragment"
         tools:layout="@layout/layout_main" />
 </navigation>

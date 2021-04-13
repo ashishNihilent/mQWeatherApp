@@ -21,6 +21,7 @@ import com.kadamab.weather.R
 import com.kadamab.weather.ViewModel.WeatherViewModel
 import com.kadamab.weather.databinding.LayoutMainBinding
 import com.kadamab.weather.rm.City
+import com.kadamab.weather.rm.StorageHelper
 import io.realm.Realm
 import kotlinx.android.synthetic.main.layout_main.view.*
 
@@ -30,6 +31,7 @@ class CitiesFragment : Fragment(), FavClickListener {
     private var init = 0
     private lateinit var progressDialog: ProgressDialog
     private lateinit var mRealm: Realm
+    private lateinit var storagehandler: StorageHelper
 
     var weatherViewModel: WeatherViewModel? = null
     private lateinit var weatherRecycler: RecyclerView
@@ -41,6 +43,11 @@ class CitiesFragment : Fragment(), FavClickListener {
     private lateinit var viewManagerLocation: RecyclerView.LayoutManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SharedPreference.init(context)
+        storagehandler = StorageHelper(context, null)
+        progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Please wait..")
+
     }
 
     override fun onCreateView(
@@ -49,27 +56,23 @@ class CitiesFragment : Fragment(), FavClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val binding = LayoutMainBinding.inflate(inflater)
-        mRealm = Realm.getDefaultInstance()
         setUpBindings(binding.root)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        progressDialog = ProgressDialog(context)
-        progressDialog.setMessage("Please wait..")
     }
 
     private fun setUpBindings(bindings: ConstraintLayout) {
-        //setUpSearches(bindings.cityRecycler)
-        SharedPreference.init(context)
         currentWoeid = SharedPreference.loadPreference(
             RequestParam.SharedPref.PREF_VAL_KEY,
             currentWoeid
         )
-                .toString()
+            .toString()
         viewManagerLocation = LinearLayoutManager(activity)
-        val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        val factory =
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
 
         weatherViewModel = ViewModelProvider(this, factory).get(WeatherViewModel::class.java)
 
@@ -79,63 +82,79 @@ class CitiesFragment : Fragment(), FavClickListener {
                 if (NAVIGATE) {
                     NAVIGATE = false
                     init = 0
-                   // saveData(it.name, bindings.cityRecycler)
+                    saveData(it.name, bindings.cityRecycler)
                     Navigation.findNavController(bindings).navigate(R.id.toDetail)
                 }
-                progressDialog.hide()
+                progressDialog?.let {
+                    if (it.isShowing) it.hide()
+                }
             } else {
                 Toast.makeText(
                     context,
                     "Something went wrong , please try again later.",
                     Toast.LENGTH_SHORT
                 ).show()
-                progressDialog.hide()
+                progressDialog?.let {
+                    if (it.isShowing) it.hide()
+                }
             }
         })
 
 
-        bindings.spinnerCities.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                if (++init > 1){
-                    NAVIGATE = true
-                    weatherViewModel!!.requestWeatherData(
-                        parent.getItemAtPosition(position).toString()
-                    )
-                  //  progressDialog.show()
+        bindings.spinnerCities?.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (++init > 1) {
+                        NAVIGATE = true
+                        parent?.getItemAtPosition(position)?.toString()?.let {
+                            weatherViewModel!!.requestWeatherData(it)
+                            progressDialog?.show()
+                        }
+                    }
                 }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
-
-
-/* currentWoeid = woeid
-
- try {
-     locationRecycler.visibility = View.GONE
-     weatherRecycler.visibility = View.VISIBLE
- }catch(e: Exception){
-     e.printStackTrace()
- }*/
+        setUpSearches(bindings.cityRecycler)
     }
 
     private fun setUpSearches(cityRecycler: RecyclerView) {
+        val cities = ArrayList<String>()
+        val cursor = storagehandler.getAllCities()
+        cursor!!.moveToFirst()
+        while (cursor.moveToNext()) {
+            cities.add(cursor.getString(cursor.getColumnIndex(StorageHelper.COLUMN_NAME)))
+        }
+        cursor.close()
+
         cityRecycler.setLayoutManager(LinearLayoutManager(context))
-        cityRecycler.setAdapter(LocationAdapter(mRealm.allObjects(City::class.java), this))
+        cityRecycler.setAdapter(LocationAdapter(cities, this))
     }
 
     private fun saveData(cityName: String, setUpSearches: RecyclerView) {
-        mRealm.beginTransaction()
-        val city: City = mRealm.createObject(City::class.java)
+        /* val realm: Realm = Realm.getDefaultInstance()
+         val city  = City()
+         city.name = cityName
+         realm.beginTransaction()
+         realm.copyToRealmOrUpdate(city)
+         realm.commitTransaction()*/
+        val city = City()
         city.name = cityName
-        mRealm.commitTransaction()
+        storagehandler.addCity(cityName)
         setUpSearches(setUpSearches)
-
     }
 
     override fun locationOnClick(pos: Int, woeid: String?) {
-        TODO("Not yet implemented")
+        woeid?.let {
+            weatherViewModel!!.requestWeatherData(it)
+            NAVIGATE = true
+            progressDialog.show()
+        }
     }
 }
 

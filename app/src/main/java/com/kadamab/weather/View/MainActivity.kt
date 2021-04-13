@@ -11,13 +11,15 @@ import com.kadamab.weather.databinding.ActivityMainBinding
 
  */
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
+    private lateinit var bindings: ActivityMainBinding
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bindings = ActivityMainBinding.inflate(layoutInflater);
+        bindings = ActivityMainBinding.inflate(layoutInflater);
         setContentView(bindings.root)
     }
+
 }
