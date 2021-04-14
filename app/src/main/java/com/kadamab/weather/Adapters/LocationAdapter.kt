@@ -2,11 +2,12 @@ package com.kadamab.weather.Adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.kadamab.weather.View.FavClickListener
 import com.kadamab.weather.databinding.ItemLocationBinding
-import com.kadamab.weather.rm.City
-import io.realm.RealmResults
+
 
 /**
 
@@ -27,6 +28,8 @@ class LocationAdapter(private val data: List<String>, private val cellClickListe
         holder.itemView.setOnClickListener {
             cellClickListener.locationOnClick(position, data.get(position))
         }
+
+
     }
 
     override fun getItemCount(): Int = data.size

@@ -25,14 +25,7 @@ class WeatherAdapter(private val data: Main) : RecyclerView.Adapter<WeatherAdapt
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val df = DecimalFormat()
         df.setMaximumFractionDigits(2)
-
         holder.binding.textWeatherState.text = data.feels_like.toString()
-        //holder.binding.textDate.text = data.get(position).applicable_date
-
-        holder.binding.txtAverageValue.text = data.temp.toString() + "°"
-        holder.binding.txtMinimumValue.text = data.temp_min.toString() + "°"
-        holder.binding.txtMaximumValue.text = data.temp_max.toString() + "°"
-
         holder.binding.textAirPressureValue.text = data.pressure.toString() + " mbar"
         holder.binding.textHumidityValue.text = data.humidity.toString() + "%"
 

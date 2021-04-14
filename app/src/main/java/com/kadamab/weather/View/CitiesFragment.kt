@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kadamab.weather.Adapters.LocationAdapter
@@ -32,9 +32,10 @@ class CitiesFragment : Fragment(), FavClickListener {
     private lateinit var progressDialog: ProgressDialog
     private lateinit var mRealm: Realm
     private lateinit var storagehandler: StorageHelper
-    private lateinit var binding : LayoutMainBinding
+    private lateinit var binding: LayoutMainBinding
     var weatherViewModel: WeatherViewModel? = null
     private lateinit var viewManagerLocation: RecyclerView.LayoutManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SharedPreference.init(context)
@@ -49,7 +50,8 @@ class CitiesFragment : Fragment(), FavClickListener {
         viewManagerLocation = LinearLayoutManager(activity)
         val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
 
-        weatherViewModel = ViewModelProvider(this, factory).get(WeatherViewModel::class.java)    }
+        weatherViewModel = ViewModelProvider(this, factory).get(WeatherViewModel::class.java)
+    }
 
     private fun observeData() {
         weatherViewModel!!.observeWeatherData().observe(viewLifecycleOwner, Observer {
@@ -124,6 +126,7 @@ class CitiesFragment : Fragment(), FavClickListener {
 
         cityRecycler.setLayoutManager(LinearLayoutManager(context))
         cityRecycler.setAdapter(LocationAdapter(cities, this))
+
     }
 
     private fun saveData(cityName: String, setUpSearches: RecyclerView) {
@@ -147,6 +150,7 @@ class CitiesFragment : Fragment(), FavClickListener {
             progressDialog.show()
         }
     }
+
 }
 
 interface FavClickListener {

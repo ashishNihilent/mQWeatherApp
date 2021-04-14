@@ -15,6 +15,7 @@ object RequestParam {
     }
 
     object Default {
+        const val HELP_URL = "https://openweathermap.force.com/s/contactsupport"
         const val CURRENT_CITY = "pune"
         const val APIKEY_VALUE = "fae7190d7e6433ec3a45285ffcf55c86"
     }

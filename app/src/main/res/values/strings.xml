@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">mWeather</string>
-    <string name="your_receent_searches">Your receent searches</string>
+    <string name="app_name">MQWeather</string>
+    <string name="your_receent_searches">Your recent searches</string>
+    <string name="wind_speed">Wind Speed:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="air_pressure">Air Pressure:</string>
+    <string name="accuracy">Accuracy:</string>
+    <string name="MqWeather">MobiQWeather</string>
 
     <string-array name="city_array">
         <item>Select your city</item>
