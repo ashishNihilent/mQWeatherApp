@@ -36,7 +36,7 @@ class WeatherFragment : Fragment() {
             if (it != null && it != null) {
                 val data = it.main
                 root.textDate.text = "${it.name} Live"
-                root.weatherLayout.textWeatherState.text = data.feels_like.toString()
+                root.weatherLayout.textWeatherState.text = Math.round(data.feels_like - 273.15).toString() + "°C"
 
                 root.weatherLayout.txtAverageValue.text = data.temp.toString() + "°"
                 root.weatherLayout.txtMinimumValue.text = data.temp_min.toString() + "°"

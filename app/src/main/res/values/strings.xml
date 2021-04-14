@@ -3,6 +3,7 @@
     <string name="your_receent_searches">Your receent searches</string>
 
     <string-array name="city_array">
+        <item>Select your city</item>
         <item>Mumbai</item>
         <item>Delhi</item>
         <item>Kolkata</item>

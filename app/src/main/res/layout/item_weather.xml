@@ -29,6 +29,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="2020-10-10"
+                android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sunny"
+                android:textSize="50sp"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="@+id/iconWeather"
                 app:layout_constraintStart_toStartOf="@+id/iconWeather"
                 app:layout_constraintTop_toBottomOf="@+id/iconWeather" />
@@ -206,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginLeft="14dp"
                         android:layout_weight="1"
                         android:text="62%"
                         android:textSize="12sp" />
@@ -242,7 +245,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginLeft="14dp"
                         android:layout_weight="1"
                         android:text="62%"
                         android:textSize="12sp" />
@@ -277,7 +280,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginLeft="14dp"
                         android:layout_weight="1"
                         android:text="4 Mph"
                         android:textSize="12sp" />
@@ -312,7 +315,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginLeft="14dp"
                         android:layout_weight="1"
                         android:text="NE"
                         android:textSize="12sp" />
@@ -337,7 +340,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginLeft="14dp"
                         android:layout_weight="1"
                         android:text="Visibility:"
                         android:textSize="12sp" />
@@ -382,7 +385,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginLeft="14dp"
                         android:layout_weight="1"
                         android:text="62%"
                         android:textSize="12sp" />
