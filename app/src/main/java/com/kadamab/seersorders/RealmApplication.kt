@@ -1,4 +1,4 @@
-package com.kadamab.weather
+package com.kadamab.seersorders
 
 import android.app.Application
 import io.realm.Realm

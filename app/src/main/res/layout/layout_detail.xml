@@ -9,8 +9,8 @@
     tools:context=".View.MainActivity">
 
     <include
-        android:id="@+id/weatherLayout"
-        layout="@layout/item_weather"
+        android:id="@+id/orderLayout"
+        layout="@layout/item_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"

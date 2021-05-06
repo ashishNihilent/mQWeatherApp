@@ -1,22 +1,9 @@
 <resources>
-    <string name="app_name">MQWeather</string>
-    <string name="your_receent_searches">Your recent searches</string>
+    <string name="app_name">Seers Orders</string>
+    <string name="your_receent_searches">Your recent Orders</string>
     <string name="wind_speed">Wind Speed:</string>
-    <string name="humidity">Humidity:</string>
-    <string name="air_pressure">Air Pressure:</string>
-    <string name="accuracy">Accuracy:</string>
-    <string name="MqWeather">MobiQWeather</string>
-
-    <string-array name="city_array">
-        <item>Select your city</item>
-        <item>Mumbai</item>
-        <item>Delhi</item>
-        <item>Kolkata</item>
-        <item>Bangalore</item>
-        <item>Chennai</item>
-        <item>Chandigarh</item>
-        <item>Nagpur</item>
-        <item>Aurangabad</item>
-        <item>Umarkhed</item>
-    </string-array>
+    <string name="address">Address:</string>
+    <string name="city">City:</string>
+    <string name="state">State:</string>
+    <string name="phone">Phone :</string>
 </resources>

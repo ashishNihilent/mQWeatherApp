@@ -1,12 +1,12 @@
-package com.kadamab.weather.Retrofit
+package com.kadamab.seersorders.Retrofit
 
-import com.kadamab.weather.Common.RequestParam
+import com.kadamab.seersorders.Common.RequestParam
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 /*
 
-*Created by KADAMAB on 31 March 2021
+*Created by KADAMAB on 6 May 2021
 
 */
 object ServiceBuilder {

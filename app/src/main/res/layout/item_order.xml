@@ -22,7 +22,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="230dp">
-
             <TextView
                 android:id="@+id/textDate"
                 android:layout_width="wrap_content"
@@ -31,39 +30,30 @@
                 android:layout_marginTop="8dp"
                 android:text="2020-10-10"
                 android:textColor="@color/colorAccent"
-                android:textSize="24sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/iconWeather"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/weather"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textDate"
-                />
-
             <TextView
-                android:id="@+id/textWeatherState"
+                android:id="@+id/tvName"
+                android:layout_marginStart="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sunny"
                 android:textColor="@color/colorPrimary"
-                android:textSize="50sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/iconWeather"
                 app:layout_constraintTop_toBottomOf="@+id/textDate" />
 
-
             <LinearLayout
+                android:gravity="top"
                 android:id="@+id/linearOther"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -86,11 +76,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@string/humidity"
+                        android:text="@string/address"
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textHumidityValue"
+                        android:id="@+id/txtAddValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -119,11 +109,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/air_pressure"
+                        android:text="@string/city"
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textAirPressureValue"
+                        android:id="@+id/txtCityValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -153,11 +143,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@string/wind_speed"
+                        android:text="@string/state"
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textWindSpeedValue"
+                        android:id="@+id/textStateValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -186,11 +176,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="Wind Direction:"
+                        android:text="State:"
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textWindDirectionValue"
+                        android:id="@+id/txtZip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -205,30 +195,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/iconVisibility"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/textVisibility"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Visibility:"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/textVisibilityValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:layout_weight="1"
-                        android:text="62%"
-                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -251,11 +217,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@string/accuracy"
+                        android:text="@string/phone"
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textAccuracyValue"
+                        android:id="@+id/txtPhone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

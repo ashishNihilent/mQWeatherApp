@@ -1,4 +1,4 @@
-package com.kadamab.weather.View
+package com.kadamab.seersorders.View
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,10 +6,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.kadamab.weather.Common.RequestParam
-import com.kadamab.weather.R
-import com.kadamab.weather.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
+import com.kadamab.seersorders.Common.RequestParam
+import com.kadamab.seersorders.R
+import com.kadamab.seersorders.databinding.ActivityMainBinding
 
 
 /**
@@ -33,16 +32,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id){
             R.id.btnHelp -> {
-                launchHelp()
             }
         }
-    }
-
-    private fun launchHelp() {
-        val url = RequestParam.Default.HELP_URL
-        val i = Intent(Intent.ACTION_VIEW)
-        i.data = Uri.parse(url)
-        startActivity(i)
     }
 
 }
